@@ -13,7 +13,7 @@ class CreateSessionBidsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sessions', function (Blueprint $table) {
+        Schema::create('session_bids', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('session_id');
             $table->integer('user_id');
