@@ -1,5 +1,15 @@
 @extends('layouts.app')
 
+@section('avatar')
+<img
+    width="40"
+    height="40"
+    src="teacher_avatar.png"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

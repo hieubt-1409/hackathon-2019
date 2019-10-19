@@ -1,5 +1,15 @@
 @extends('layouts.app')
 
+@section('avatar')
+<img
+    width="40"
+    height="40"
+    src="https://images.viblo.asia/avatar-retina/9def6311-6903-4a08-b727-88568a31e525.jpg"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+>
+@endsection
+
 @section('styles')
     <style>
         .home__bider {
