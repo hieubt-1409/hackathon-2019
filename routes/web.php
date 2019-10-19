@@ -21,6 +21,7 @@ Route::group(['namespace' => 'Student', 'prefix' => 'student'], function () {
 
     Route::group(['prefix' => 'sessions'], function() {
         Route::get('/', 'SessionController@index');
+        Route::get('/create', 'SessionController@create');
         Route::post('/', 'SessionController@store');
     });
 });
