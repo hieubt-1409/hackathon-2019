@@ -41,4 +41,9 @@ class Session extends Model
     {
         return Carbon::parse($value)->format('l jS M Y h:i A');
     }
+
+    public function sessionBids()
+    {
+        return $this->hasMany(SessionBid::class);
+    }
 }

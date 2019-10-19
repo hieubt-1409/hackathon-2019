@@ -87,3 +87,50 @@
         }
     }
 }
+
+.chat {
+    width: 400px;
+    min-height: 500px;
+    margin: auto;
+    border: 1px solid #cacaca;
+    background: white;
+    border-radius: 3px;
+    overflow-y: scroll;
+
+    &__container {
+    }
+
+    &__header {
+        border-bottom: 1px solid #cacaca;
+        background: #f2f5f8;
+        padding: 15px;
+    }
+
+    &__content {
+    }
+
+    &__footer {
+        height: 100px;
+        
+    }
+
+    &__item {
+        width: 100%;
+        border-bottom: 1px solid #cacaca;
+        padding: 15px;
+
+        &--header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &--name {
+            font-weight: 700;
+        }
+
+        &--time {
+            font-size: 11px;
+            color: grey;
+        }
+    }
+}
