@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('more-js')
+<script src="{{ asset('js/app.js') }}" defer></script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -7,7 +11,7 @@
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
                     {{ session('status') }}
-                    
+
                 </div>
             @endif
 
@@ -16,15 +20,8 @@
                     <div class="home__title">
                         Xin chào: <span>{{ $user->name }}</span>
                     </div>
-                    <div class="home__balance">
 
-                    </div>
-                    @if ($user->type == 'student')
-                        
-                    @else
-                        teacher                        
-                    @endif
-                    You are logged in!
+                    <teacher-home></teacher-home>
                 </div>
             </div>
         </div>

@@ -1,10 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
-use Carbon\Carbon;
+use App\Models\User;
 
 class Session extends Model
 {
