@@ -77,7 +77,7 @@
                     @else
                         <div class="home__learn-now">
                             <a href="{{ url('/student/sessions/create') }}">
-                                LEARN NOW
+                                ĐẶT LỊCH HỌC NGAY
                             </a>
                         </div>
                     @endif

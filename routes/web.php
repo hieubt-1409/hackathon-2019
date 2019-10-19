@@ -28,3 +28,9 @@ Route::group(['namespace' => 'Student', 'prefix' => 'student'], function () {
 Route::group(['namespace' => 'Teacher', 'prefix' => 'teacher'], function () {
     Route::get('/', 'HomeController@index');
 });
+
+Route::group(['namespace' => 'Session', 'prefix' => 'session'], function () {
+    Route::group(['prefix' => '{session}'], function () {
+        Route::get('/', 'ChatController@index');
+    });
+});

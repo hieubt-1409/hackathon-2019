@@ -10652,6 +10652,9 @@ a.text-dark:focus {
   background: white;
   border-radius: 3px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .home__container {
@@ -10690,7 +10693,7 @@ a.text-dark:focus {
 .home__learn-now {
   border: 1px solid #4cae4c;
   background: #5cb85c;
-  width: 150px;
+  width: 210px;
   font-size: 16px;
   font-weight: 700;
   padding: 15px;
