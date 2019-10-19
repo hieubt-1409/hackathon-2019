@@ -27,6 +27,11 @@ class Session extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function bids()
+    {
+        return $this->hasMany(SessionBid::class, 'session_id');
+    }
+
     public function biders()
     {
         return $this->belongsToMany(User::class, 'session_bids', 'session_id', 'user_id')

@@ -30,21 +30,37 @@
                     </div>
                 </div>
 
-                <el-slider
-                    show-input
-                    show-tooltip
-                    :min="session.min_bid"
-                    :max="session.max_bid"
-                    :step="1000"
-                    :show-input-controls="false"
-                    :format-tooltip="a => a ? a.toLocaleString() : undefined"
-                    input-size="mini"
-                    class="mb-4"
-                />
+                <template v-if="!offeredSessionIds.includes(session.id)">
+                <!-- <template v-if="false"> -->
+                    <el-slider
+                        show-input
+                        show-tooltip
+                        :min="session.min_bid"
+                        :max="session.max_bid"
+                        :step="1000"
+                        :show-input-controls="false"
+                        :format-tooltip="a => a ? a.toLocaleString() : undefined"
+                        input-size="mini"
+                        class="mb-4"
+                    />
 
-                <div class="d-flex">
-                    <el-button type="success" style="flex:1">Nhận yêu cầu</el-button>
-                    <el-button style="flex:1">Bỏ qua</el-button>
+                    <div class="d-flex">
+                        <el-button
+                            type="success"
+                            style="flex:1"
+                            @click="offerLession(session)"
+                        >Nhận yêu cầu</el-button>
+
+                        <el-button style="flex:1" @click="ignoreRequest(session)">Bỏ qua</el-button>
+                    </div>
+                </template>
+
+                <div v-else class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <i class="el-icon-loading" />
+                        Đang chờ xác nhận...
+                    </div>
+                    <el-button type="danger" @click="cancelOffer(session)">Hủy</el-button>
                 </div>
             </el-card>
         </div>
@@ -58,12 +74,12 @@
         data() {
             return {
                 sessions: [],
+                offeredSessionIds: [],
             };
         },
 
         mounted() {
             this.$_channel = Echo.channel('sessions');
-
             this.$_channel.listen('SessionCreated', this.onNewSession);
         },
 
@@ -78,6 +94,24 @@
                 const { data: session } = await axios.get(`/student/sessions/${session_id}`);
 
                 this.sessions = [...this.sessions, session];
+            },
+
+            async offerLession(session) {
+                const { data: bid } = await axios.post(`/teacher/sessions/${session.id}/offer`, {
+                    amount: session.min_bid,
+                });
+
+                this.offeredSessionIds = [...this.offeredSessionIds, session.id];
+            },
+
+            ignoreRequest(session) {
+                this.sessions = this.sessions.filter(({ id }) => id !== session.id);
+            },
+
+            async cancelOffer(session) {
+                await axios.post(`/teacher/sessions/${session.id}/cancel-offer`);
+
+                this.offeredSessionIds = this.offeredSessionIds.filter(id => id !== session.id);
             }
         },
     }

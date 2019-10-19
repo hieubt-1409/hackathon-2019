@@ -29,6 +29,11 @@ Route::group(['namespace' => 'Student', 'prefix' => 'student'], function () {
 
 Route::group(['namespace' => 'Teacher', 'prefix' => 'teacher'], function () {
     Route::get('/', 'HomeController@index');
+
+    Route::group(['prefix' => 'sessions'], function() {
+        Route::post('/{session}/offer', 'SessionController@offerLession');
+        Route::post('/{session}/cancel-offer', 'SessionController@cancelOffer');
+    });
 });
 
 Route::group(['namespace' => 'Session', 'prefix' => 'session'], function () {
