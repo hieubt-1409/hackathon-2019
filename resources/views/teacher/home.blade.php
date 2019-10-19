@@ -7,6 +7,7 @@
     src="teacher_avatar.png"
     data-toggle="collapse"
     data-target="#navbarSupportedContent"
+    class="d-md-none"
 >
 @endsection
 

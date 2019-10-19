@@ -175,3 +175,55 @@
         }
     }
 }
+
+.session {
+    width: 100%;
+    max-width: 400px;
+    min-height: 500px;
+    margin: auto;
+    border: 1px solid #cacaca;
+    background: white;
+    border-radius: 3px;
+
+    &__container {
+        padding: 15px;
+    }
+
+    &__time {
+        display: flex;
+        margin-top: 15px;
+    }
+
+    &__content  {
+        width: 100%;
+    }
+
+    &__price {
+        display: flex;
+        margin-top: 15px;
+    }
+
+    &__method {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+
+        > label {
+            margin-bottom: 0;
+            
+            &:first-child {
+                margin-right: 25px;
+            }
+        }
+    }
+
+    &__action {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+
+        > button {
+            margin-right: 25px;
+        }
+    }
+}

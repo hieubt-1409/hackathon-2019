@@ -1,37 +1,18 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link href="{{ asset('css/student/session/create.css') }}" rel="stylesheet">
     <link href="https://www.jqueryscript.net/demo/Clean-jQuery-Date-Time-Picker-Plugin-datetimepicker/jquery.datetimepicker.css" rel="stylesheet">
-    <style>
-        .session {
-            width: 100%;
-            max-width: 400px;
-            min-height: 600px;
-            margin: auto;
-            border: 1px solid #cacaca;
-            background: white;
-            border-radius: 3px;
-        }
+@endsection
 
-        .session__container {
-            padding: 15px;
-        }
-
-        .session__time {
-            display: flex;
-        }
-        .session__content  {
-            width: 100%;
-        }
-        .session__price {
-            display: flex;
-        }
-        .session__action {
-            display: flex;
-            justify-content: center;
-        }
-    </style>
+@section('avatar')
+<img
+    width="40"
+    height="40"
+    src="https://images.viblo.asia/avatar-retina/9def6311-6903-4a08-b727-88568a31e525.jpg"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    class="d-md-none"
+>
 @endsection
 
 @section('content')
@@ -41,7 +22,6 @@
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
                     {{ session('status') }}
-
                 </div>
             @endif
 
@@ -52,23 +32,27 @@
                         </textarea>
                         <div class='session__time'>
                             <input name='start_time' placeholder="Bắt đầu" type="text" id="start-time" class="form-control" >
+                        </div>
+                        <div class='session__time'>
                             <input name='end_time' placeholder="Kết thúc" type="text" id="end-time" class="form-control" >
                         </div>
                         <div class='session__price'>
-                            <input name='min_bid' placeholder="Min giá" type="number" class="form-control" >
-                            <input name='max_bid' placeholder="Max giá" type="number" class="form-control" >
+                            <input name='min_bid' placeholder="Mức giá tối đa" type="number" class="form-control" >
                         </div>
+                        <div class='session__price'>
+                                <input name='max_bid' placeholder="Mức giá tối thiểu" type="number" class="form-control" >
+                            </div>
                         <div class='session__price'>
                             <input name="location" placeholder="Địa chỉ" type="text" class="form-control" >
                         </div>
                         <div class="session__method">
                             <label class="radio">
-                            <input type="radio" name="method">
-                            Direct
+                                <input type="radio" name="method">
+                                Gặp mặt
                             </label>
                             <label class="radio">
-                            <input type="radio" name="method">
-                            Video call
+                                <input type="radio" name="method">
+                                Trực tuyến
                             </label>
                         </div>
                         <div class="session__action">
