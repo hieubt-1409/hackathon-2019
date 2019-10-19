@@ -39,7 +39,8 @@ class SessionController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->user()->sessions()->create($request->all());
+        $request->user()->sessions()->create($request->all());
+        return redirect('/student');
     }
 
     /**

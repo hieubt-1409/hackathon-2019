@@ -17,7 +17,8 @@ class Session extends Model
         'location',
         'method',
         'payment_methods',
-        'time',
+        'start_time',
+        'end_time',
     ];
 
     public function user()

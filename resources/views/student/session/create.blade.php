@@ -52,7 +52,7 @@
                         </textarea>
                         <div class='session__time'>
                             <input name='start_time' placeholder="Bắt đầu" type="text" id="start-time" class="form-control" >
-                            <input name='start_time' placeholder="Kết thúc" type="text" id="end-time" class="form-control" >
+                            <input name='end_time' placeholder="Kết thúc" type="text" id="end-time" class="form-control" >
                         </div>
                         <div class='session__price'>
                             <input name='min_bid' placeholder="Min giá" type="number" class="form-control" >
@@ -61,9 +61,19 @@
                         <div class='session__price'>
                             <input name="location" placeholder="Địa chỉ" type="text" class="form-control" >
                         </div>
+                        <div class="session__method">
+                            <label class="radio">
+                            <input type="radio" name="method">
+                            Direct
+                            </label>
+                            <label class="radio">
+                            <input type="radio" name="method">
+                            Video call
+                            </label>
+                        </div>
                         <div class="session__action">
                             <button class="btn btn-primary" type="submit" >Tạo</button>
-                            <a class="btn btn-danger">Hủy</a>
+                            <a class="btn btn-danger" href="/student">Hủy</a>
                         </div>
                     </form>
                 </div>
