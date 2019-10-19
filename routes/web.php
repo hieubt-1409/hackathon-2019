@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::login(App\User::find(1));
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +17,11 @@ Route::group(['prefix' => 'sessions'], function() {
     Route::get('/', 'SessionController@index');
     Route::post('/', 'SessionController@store');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
