@@ -9,22 +9,58 @@
 
 .home {
     width: 400px;
-    min-height: 600px;
+    min-height: 500px;
     margin: auto;
     border: 1px solid #cacaca;
     background: white;
     border-radius: 3px;
+    text-align: center;
 
     &__container {
         padding: 15px;
     }
 
     &__title {
-        text-align: center;
-        font-size: 16px;
+        font-size: 20px;
 
         span {
             font-weight: 700;
+        }
+    }
+
+    &__balance {
+        font-size: 16px;
+        font-weight: 700;
+
+        &--plus {
+            padding: 0 7px;
+            border-radius: 5px;
+            border: 1px solid #4cae4c;
+            background: #5cb85c;
+            color: white;
+
+            &:hover {
+                background: #449d44;
+                border-color: #398439;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__learn-now {
+        margin: 30px auto;
+        border: 1px solid #4cae4c;
+        background: #5cb85c;
+        color: white;
+        width: 150px;
+        font-size: 16px;
+        font-weight: 700;
+        padding: 15px;
+
+        &:hover {
+            background: #449d44;
+            border-color: #398439;
+            cursor: pointer;
         }
     }
 }

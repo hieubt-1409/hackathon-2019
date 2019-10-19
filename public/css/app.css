@@ -10646,11 +10646,12 @@ a.text-dark:focus {
 
 .home {
   width: 400px;
-  min-height: 600px;
+  min-height: 500px;
   margin: auto;
   border: 1px solid #cacaca;
   background: white;
   border-radius: 3px;
+  text-align: center;
 }
 
 .home__container {
@@ -10658,8 +10659,46 @@ a.text-dark:focus {
 }
 
 .home__title {
-  text-align: center;
-  font-size: 16px span;
-  font-size-font-weight: 700;
+  font-size: 20px;
+}
+
+.home__title span {
+  font-weight: 700;
+}
+
+.home__balance {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.home__balance--plus {
+  padding: 0 7px;
+  border-radius: 5px;
+  border: 1px solid #4cae4c;
+  background: #5cb85c;
+  color: white;
+}
+
+.home__balance--plus:hover {
+  background: #449d44;
+  border-color: #398439;
+  cursor: pointer;
+}
+
+.home__learn-now {
+  margin: 30px auto;
+  border: 1px solid #4cae4c;
+  background: #5cb85c;
+  color: white;
+  width: 150px;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px;
+}
+
+.home__learn-now:hover {
+  background: #449d44;
+  border-color: #398439;
+  cursor: pointer;
 }
 

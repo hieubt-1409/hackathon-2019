@@ -17,14 +17,21 @@
                         Xin chào: <span>{{ $user->name }}</span>
                     </div>
                     <div class="home__balance">
-
+                        <span class="home__balance--number">
+                            {{ $user->balance }} (VNĐ)
+                        </span>
+                        <span class="home__balance--plus">
+                            +
+                        </span>
+                    </div>
+                    <div class="home__learn-now">
+                        LEARN NOW
                     </div>
                     @if ($user->type == 'student')
                         
                     @else
                         teacher                        
                     @endif
-                    You are logged in!
                 </div>
             </div>
         </div>
