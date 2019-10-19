@@ -13,15 +13,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['prefix' => 'sessions'], function() {
-    Route::get('/', 'SessionController@index');
-    Route::post('/', 'SessionController@store');
+
+Auth::routes();
+
+Route::group(['namespace' => 'Student', 'prefix' => 'student'], function () {
+    Route::get('/', 'HomeController@index');
+
+    Route::group(['prefix' => 'sessions'], function() {
+        Route::get('/', 'SessionController@index');
+        Route::post('/', 'SessionController@store');
+    });
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['namespace' => 'Teacher', 'prefix' => 'teacher'], function () {
+    Route::get('/', 'HomeController@index');
+});
