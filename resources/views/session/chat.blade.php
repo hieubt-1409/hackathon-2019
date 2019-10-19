@@ -7,7 +7,14 @@
             <div class="chat">
                 <div class="chat__container">
                     <div class="chat__header">
-                        {{ $session->content }}
+                        <div class="chat__back">
+                            <a class="btn btn-danger" href="{{ asset('/student') }}">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="chat__title">
+                            {{ $session->content }}
+                        </div>
                     </div>
                     <div class="chat__content">
                         @foreach ($messages as $message)
@@ -30,10 +37,14 @@
                     </div>
                     <div class="chat__footer">
                         <form action="" method="post">
-                            <textarea name="content" placeholder="Nhập nội dung tin nhắn"></textarea>
-                            <button type="submit">
-                                Gửi
-                            </button>
+                            <div class="chat__footer--button">
+                                <button type="submit" class="btn btn-success">
+                                    Gửi
+                                </button>
+                            </div>
+                            <div class="chat__footer--textarea">
+                                <textarea name="content" placeholder="Nhập nội dung tin nhắn"></textarea>
+                            </div>
                         </form>
                     </div>
                 </div>
