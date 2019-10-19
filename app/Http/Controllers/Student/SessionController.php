@@ -51,7 +51,7 @@ class SessionController extends Controller
      */
     public function show($id)
     {
-        return Session::findOrFail($id);
+        return Session::findOrFail($id)->load('user');
     }
 
     /**

@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('more-js')
-<script src="{{ asset('js/app.js') }}" defer></script>
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -15,15 +11,11 @@
                 </div>
             @endif
 
-            <div class="home">
-                <div class="home__container">
-                    <div class="home__title">
-                        Xin chào: <span>{{ $user->name }}</span>
-                    </div>
+            <el-card>
+                <h4 class="m-0">Xin chào <b>{{ $user->name }}</b></h4>
+            </el-card>
 
-                    <teacher-home></teacher-home>
-                </div>
-            </div>
+            <teacher-home></teacher-home>
         </div>
     </div>
 </div>

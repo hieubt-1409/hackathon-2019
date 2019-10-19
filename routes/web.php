@@ -19,11 +19,7 @@ Auth::routes();
 Route::group(['namespace' => 'Student', 'prefix' => 'student'], function () {
     Route::get('/', 'HomeController@index');
 
-    Route::group(['prefix' => 'sessions'], function() {
-        Route::get('/', 'SessionController@index');
-        Route::get('/create', 'SessionController@create');
-        Route::post('/', 'SessionController@store');
-    });
+    Route::resource('sessions', 'SessionController');
 });
 
 Route::group(['namespace' => 'Teacher', 'prefix' => 'teacher'], function () {
