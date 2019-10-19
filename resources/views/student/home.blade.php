@@ -1,5 +1,18 @@
 @extends('layouts.app')
 
+@section('styles')
+    <style>
+        .home__bider {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .home__bider button {
+            height: fit-content;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -72,7 +85,27 @@
                                 <div class="row__content">
                                     {{ $currentSession->location }}
                                 </div>
-                            </div>        
+                            </div>
+                            <div>
+                                <div class="row">
+                                    Biders
+                                </div>
+                                @foreach ($currentSession->biders as $item)
+                                    <div class="home__bider">
+                                        <img src="https://viblo.asia/images/mm.png" />
+                                        <div class="amount">{{$item->pivot->amount}}</div>
+                                        <button class="btn-default">
+                                            <i class="far fa-comment-dots"></i>
+                                        </button>
+                                        <button class="btn-default">
+                                            <i class="far fa-check-circle"></i>
+                                        </button>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="session__action">
+                                <button class="btn btn-danger" >Hủy</button>
+                            </div>
                         </div>
                     @else
                         <div class="home__learn-now">
