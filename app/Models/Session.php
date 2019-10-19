@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\AcceptedSessions;
 use Carbon\Carbon;
 
 class Session extends Model
@@ -29,7 +30,12 @@ class Session extends Model
     public function biders()
     {
         return $this->belongsToMany(User::class, 'session_bids', 'session_id', 'user_id')
-            ->withPivot(['amount']);
+            ->withPivot(['amount', 'id']);
+    }
+
+    public function accepted()
+    {
+        return $this->hasOne(AcceptedSessions::class, 'session_id');
     }
 
     public function getStartTimeAttribute($value)

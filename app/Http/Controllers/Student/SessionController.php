@@ -76,7 +76,6 @@ class SessionController extends Controller
      */
     public function update(Request $request, Session $session)
     {
-        $this->authorize('update', $session);
         return $session->update($request->all());
     }
 
@@ -86,11 +85,19 @@ class SessionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Session $id)
+    public function destroy(Session $session)
     {
-        $this->authorize('delete', $session);
         $session->delete();;
 
         return true;
+    }
+
+    public function sessionAcceptBid(Session $session, Request $request)
+    {
+        if ($session->has('accepted')) abort(403);
+        $bidId = $request->get('bidId');
+        $session->accepted()->create(['session_bid_id' => $bidId]);
+
+        return redirect('/student');
     }
 }

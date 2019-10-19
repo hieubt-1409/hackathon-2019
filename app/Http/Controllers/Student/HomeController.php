@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $currentSession = $user->currentSession->load(['biders']);
+        $currentSession = $user->currentSession->load(['biders', 'accepted.bid.user']);
 
         return view('student.home', compact('user', 'currentSession'));
     }
