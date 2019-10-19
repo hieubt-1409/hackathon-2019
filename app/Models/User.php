@@ -50,6 +50,6 @@ class User extends Authenticatable
 
     public function currentSession()
     {
-        return $this->hasOne(Session::class);
+        return $this->hasOne(Session::class)->orderBy('id', 'desc');
     }
 }
