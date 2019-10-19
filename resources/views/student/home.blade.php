@@ -34,7 +34,7 @@
                 </div>
             @endif
 
-            <div class="home">
+            <el-card class="mb-4">
                 <div class="home__container">
                     <div class="home__title">
                         Xin chào: <span>{{ $user->name }}</span>
@@ -127,7 +127,7 @@
                         </div>
                     @endif
                 </div>
-            </div>
+            </el-card>
 
             @if(!$currentSession->accepted)
                 <student-home :session-id="{{ $currentSession->id }}"></student-home>
