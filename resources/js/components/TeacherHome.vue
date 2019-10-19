@@ -37,14 +37,14 @@
                     :max="session.max_bid"
                     :step="1000"
                     :show-input-controls="false"
-                    :format-tooltip="a => a.toLocaleString()"
+                    :format-tooltip="a => a ? a.toLocaleString() : undefined"
                     input-size="mini"
                     class="mb-4"
                 />
 
                 <div class="d-flex">
-                    <el-button type="success" style="flex:1">Offer</el-button>
-                    <el-button style="flex:1">Ignore</el-button>
+                    <el-button type="success" style="flex:1">Nhận yêu cầu</el-button>
+                    <el-button style="flex:1">Bỏ qua</el-button>
                 </div>
             </el-card>
         </div>
