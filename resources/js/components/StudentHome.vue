@@ -41,8 +41,10 @@
             acceptedId: null,
         }),
 
-        mounted() {
-            this.getOffers();
+        async mounted() {
+            await this.getOffers();
+            this.$_channel = Echo.channel('sessions');
+            this.$_channel.listen('SessionOffered', this.onNewOffer);
         },
 
         methods: {
@@ -63,6 +65,12 @@
                 });
 
                 window.location.reload();
+            },
+
+            onNewOffer(offer) {
+                console.log(offer);
+
+                this.offers = [...this.offers, offer];
             }
         }
     }

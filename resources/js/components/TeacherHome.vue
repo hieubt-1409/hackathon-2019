@@ -1,5 +1,35 @@
 <template>
-    <div v-if="sessions.length === 0" class="text-center mt-4">Chưa có yêu cầu nào</div>
+    <div v-if="accepted" class="mt-4">
+        <h2>Bạn có lịch học đã đặt trước</h2>
+
+        <el-card>
+            <div class="text-center">
+                <img width="60" height="60" src="https://images.viblo.asia/avatar-retina/9def6311-6903-4a08-b727-88568a31e525.jpg">
+                <h3>{{ accepted.session.user.name }}</h3>
+            </div>
+
+            <p style="font-size: 20px">{{ accepted.session.content }}</p>
+            <div class="mb-2">
+                <div class="row">
+                    <div class="col-3 font-weight-bold">Mức giá:</div>
+                    <span class="text-success font-weight-bold">{{ accepted.bid.amount | formatNumber }} VNĐ</span>
+                </div>
+                <div class="row">
+                    <div class="col-3 font-weight-bold">Thời gian:</div>
+                    <div>
+                        <div>{{ accepted.session.start_time }}</div>
+                        <div>{{ accepted.session.end_time }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 font-weight-bold">Địa điểm:</div>
+                    {{ accepted.session.location }}
+                </div>
+            </div>
+        </el-card>
+    </div>
+
+    <div v-else-if="sessions.length === 0" class="text-center mt-4">Chưa có yêu cầu nào</div>
 
     <div v-else class="mt-4">
         <h2>Có {{ sessions.length }} yêu cầu mới</h2>
@@ -75,12 +105,18 @@
             return {
                 sessions: [],
                 offeredSessionIds: [],
+                accepted: null,
             };
         },
 
-        mounted() {
-            this.$_channel = Echo.channel('sessions');
-            this.$_channel.listen('SessionCreated', this.onNewSession);
+        async mounted() {
+            await this.getAccepted();
+
+            if (!this.accepted) {
+                this.$_channel = Echo.channel('sessions');
+                this.$_channel.listen('SessionCreated', this.onNewSession);
+                this.$_channel.listen('OfferAccepted', this.onOfferAccepted);
+            }
         },
 
         destroyed() {
@@ -94,6 +130,16 @@
                 const { data: session } = await axios.get(`/student/sessions/${session_id}`);
 
                 this.sessions = [...this.sessions, session];
+            },
+
+            onOfferAccepted(offer) {
+                this.accepted = offer;
+            },
+
+            async getAccepted() {
+                const { data: accepted } = await axios.get(`/teacher/accepted-offer`);
+
+                this.accepted = accepted;
             },
 
             async offerLession(session) {

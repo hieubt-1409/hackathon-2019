@@ -23,4 +23,9 @@ class AcceptedSessions extends Model
     {
         return $this->belongsTo(SessionBid::class, 'session_bid_id');
     }
+
+    public function session()
+    {
+        return $this->belongsTo(Session::class, 'session_id');
+    }
 }
