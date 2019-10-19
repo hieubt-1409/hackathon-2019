@@ -24,8 +24,10 @@ Route::group(['namespace' => 'Student', 'prefix' => 'student'], function () {
     Route::get('/', 'HomeController@index');
 
     Route::resource('sessions', 'SessionController');
+
     Route::group(['prefix' => 'sessions'], function() {
         Route::group(['prefix' => '{session}'], function () {
+            Route::get('/offers', 'SessionController@getOffers');
             Route::post('/accept-bid', 'SessionController@sessionAcceptBid');
         });
     });
@@ -40,7 +42,7 @@ Route::group(['namespace' => 'Teacher', 'prefix' => 'teacher'], function () {
     });
 });
 
-Route::group(['namespace' => 'Session', 'prefix' => 'session'], function () {
+Route::group(['namespace' => 'Session', 'prefix' => 'chat'], function () {
     Route::group(['prefix' => '{sessionBid}'], function () {
         Route::get('/', 'ChatController@index');
     });

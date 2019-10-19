@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Student;
 
+use App\Events\OfferAccepted;
 use App\Events\SessionCreated;
 use App\Models\Session;
 use Illuminate\Http\Request;
@@ -94,10 +95,19 @@ class SessionController extends Controller
 
     public function sessionAcceptBid(Session $session, Request $request)
     {
-        if ($session->has('accepted')) abort(403);
+        if ($session->accepted !== null) abort(403);
         $bidId = $request->get('bidId');
-        $session->accepted()->create(['session_bid_id' => $bidId]);
+        $accepted = $session->accepted()->create(['session_bid_id' => $bidId]);
 
-        return redirect('/student');
+        OfferAccepted::dispatch($accepted->bid);
+    }
+
+    public function getOffers(Session $session) {
+        $acceptedBid = $session->accepted;
+
+        return [
+            'offers' => $session->bids->load('user'),
+            'accepted' => $acceptedBid,
+        ];
     }
 }

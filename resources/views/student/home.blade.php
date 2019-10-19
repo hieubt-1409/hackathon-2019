@@ -114,40 +114,9 @@
                                     {{ $currentSession->location }}
                                 </div>
                             </div>
-                            <div>
-                                @if($currentSession->accepted)
-                                    <div class="row">
-                                        Người chấp nhận yêu cầu của bạn:
-                                    </div>
-                                    <div class="home__bider">
-                                        <img src="https://viblo.asia/images/mm.png" />
-                                        <button class="btn-default">
-                                            <i class="far fa-comment-dots"></i>
-                                        </button>
-                                    </div>
-                                @else
-                                    <div class="row">
-                                        Người chấp nhận yêu cầu của bạn:
-                                    </div>
-                                    @foreach ($currentSession->biders as $item)
-                                        <div class="home__bider">
-                                            <img src="https://viblo.asia/images/mm.png" />
-                                            <div class="amount">{{$item->pivot->amount}}</div>
-                                            <button class="btn-default">
-                                                <i class="far fa-comment-dots"></i>
-                                            </button>
-                                            <form action='/student/sessions/{{$currentSession->id}}/accept-bid' method="POST">
-                                                <input name="bidId" value="{{$item->pivot->id}}" hidden/>
-                                                <button class="btn-default btn-success" style="height: auto;"type="submit">
-                                                    <i class="far fa-check-circle"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    @endforeach
-                                @endif
-                            </div>
+
                             <div class="session__action">
-                                <button class="btn btn-danger" >Hủy</button>
+                                <el-button type="danger">Hủy</el-button>
                             </div>
                         </div>
                     @else
@@ -159,6 +128,10 @@
                     @endif
                 </div>
             </div>
+
+            @if(!$currentSession->accepted)
+                <student-home :session-id="{{ $currentSession->id }}"></student-home>
+            @endif
         </div>
     </div>
 </div>
