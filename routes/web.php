@@ -20,6 +20,11 @@ Route::group(['namespace' => 'Student', 'prefix' => 'student'], function () {
     Route::get('/', 'HomeController@index');
 
     Route::resource('sessions', 'SessionController');
+    Route::group(['prefix' => 'sessions'], function() {
+        Route::group(['prefix' => '{session}'], function () {
+            Route::post('/accept-bid', 'SessionController@sessionAcceptBid');
+        });
+    });
 });
 
 Route::group(['namespace' => 'Teacher', 'prefix' => 'teacher'], function () {

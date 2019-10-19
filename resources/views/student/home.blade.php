@@ -38,6 +38,11 @@
                     </div>
                     @if ($currentSession)
                         <div class="home__current-session">
+                            @if ($currentSession->accepted)
+                                <div class="row">
+                                    Bạn có 1 lịch học đang chờ:
+                                </div>
+                            @endif
                             <div class="row">
                                 <div class="row__label">
                                     Nội dung
@@ -62,22 +67,34 @@
                                     {{ $currentSession->end_time }}
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="row__label">
-                                    Mức giá tối thiểu
+                            @if ($currentSession->accepted)
+                                <div class="row">
+                                    <div class="row__label">
+                                        Mức giá
+                                    </div>
+                                    <div class="row__content">
+                                        {{ $currentSession->accepted->bid->amount }} (VNĐ)
+                                    </div>
                                 </div>
-                                <div class="row__content">
-                                    {{ $currentSession->min_bid }} (VNĐ)
+                            @else
+                                <div class="row">
+                                    <div class="row__label">
+                                        Mức giá tối thiểu
+                                    </div>
+                                    <div class="row__content">
+                                        {{ $currentSession->min_bid }} (VNĐ)
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="row__label">
-                                    Mức giá tối đa
+                                <div class="row">
+                                    <div class="row__label">
+                                        Mức giá tối đa
+                                    </div>
+                                    <div class="row__content">
+                                        {{ $currentSession->max_bid }} (VNĐ)
+                                    </div>
                                 </div>
-                                <div class="row__content">
-                                    {{ $currentSession->max_bid }} (VNĐ)
-                                </div>
-                            </div>
+                            @endif
+
                             <div class="row">
                                 <div class="row__label">
                                     Địa điểm
@@ -87,21 +104,36 @@
                                 </div>
                             </div>
                             <div>
-                                <div class="row">
-                                    Biders
-                                </div>
-                                @foreach ($currentSession->biders as $item)
+                                @if($currentSession->accepted)
+                                    <div class="row">
+                                        Người chấp nhận yêu cầu của bạn:
+                                    </div>
                                     <div class="home__bider">
                                         <img src="https://viblo.asia/images/mm.png" />
-                                        <div class="amount">{{$item->pivot->amount}}</div>
                                         <button class="btn-default">
                                             <i class="far fa-comment-dots"></i>
                                         </button>
-                                        <button class="btn-default">
-                                            <i class="far fa-check-circle"></i>
-                                        </button>
                                     </div>
-                                @endforeach
+                                @else
+                                    <div class="row">
+                                        Người chấp nhận yêu cầu của bạn:
+                                    </div>
+                                    @foreach ($currentSession->biders as $item)
+                                        <div class="home__bider">
+                                            <img src="https://viblo.asia/images/mm.png" />
+                                            <div class="amount">{{$item->pivot->amount}}</div>
+                                            <button class="btn-default">
+                                                <i class="far fa-comment-dots"></i>
+                                            </button>
+                                            <form action='/student/sessions/{{$currentSession->id}}/accept-bid' method="POST">
+                                                <input name="bidId" value="{{$item->pivot->id}}" hidden/>
+                                                <button class="btn-default btn-success" style="height: auto;"type="submit">
+                                                    <i class="far fa-check-circle"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                             <div class="session__action">
                                 <button class="btn btn-danger" >Hủy</button>
