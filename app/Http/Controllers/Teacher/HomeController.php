@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Teacher;
 
 use Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,6 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        return view('home', compact('user'));
+        return view('teacher.home', compact('user'));
     }
 }
