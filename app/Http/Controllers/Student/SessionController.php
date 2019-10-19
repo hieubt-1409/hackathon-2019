@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Student;
 
+use App\Events\SessionCreated;
 use App\Models\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,8 @@ class SessionController extends Controller
      */
     public function store(Request $request)
     {
-        $request->user()->sessions()->create($request->all());
+        $session = $request->user()->sessions()->create($request->all());
+        SessionCreated::dispatch($session);
         return redirect('/student');
     }
 
