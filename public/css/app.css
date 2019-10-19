@@ -10660,6 +10660,7 @@ a.text-dark:focus {
 
 .home__title {
   font-size: 20px;
+  margin-bottom: 20px;
 }
 
 .home__title span {
@@ -10669,6 +10670,7 @@ a.text-dark:focus {
 .home__balance {
   font-size: 16px;
   font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .home__balance--plus {
@@ -10686,19 +10688,35 @@ a.text-dark:focus {
 }
 
 .home__learn-now {
-  margin: 30px auto;
   border: 1px solid #4cae4c;
   background: #5cb85c;
-  color: white;
   width: 150px;
   font-size: 16px;
   font-weight: 700;
   padding: 15px;
+  margin: 0 auto;
+}
+
+.home__learn-now a {
+  color: white;
+}
+
+.home__learn-now a:hover {
+  text-decoration: none;
 }
 
 .home__learn-now:hover {
   background: #449d44;
   border-color: #398439;
   cursor: pointer;
+}
+
+.home__current-session .row {
+  margin: 0;
+}
+
+.home__current-session .row__label {
+  width: 130px;
+  text-align: justify;
 }
 

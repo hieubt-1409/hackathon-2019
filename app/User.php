@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Session::class, 'session_bids', 'user_id', 'session_id');
     }
+
+    public function currentSession()
+    {
+        return $this->hasOne(Session::class);
+    }
 }

@@ -22,6 +22,7 @@
 
     &__title {
         font-size: 20px;
+        margin-bottom: 20px;
 
         span {
             font-weight: 700;
@@ -31,6 +32,7 @@
     &__balance {
         font-size: 16px;
         font-weight: 700;
+        margin-bottom: 20px;
 
         &--plus {
             padding: 0 7px;
@@ -48,19 +50,37 @@
     }
 
     &__learn-now {
-        margin: 30px auto;
         border: 1px solid #4cae4c;
         background: #5cb85c;
-        color: white;
         width: 150px;
         font-size: 16px;
         font-weight: 700;
         padding: 15px;
+        margin: 0 auto;
+
+        a {
+            color: white;
+            
+            &:hover {
+                text-decoration: none;
+            }
+        }
 
         &:hover {
             background: #449d44;
             border-color: #398439;
             cursor: pointer;
+        }
+    }
+
+    &__current-session {
+        .row {
+            margin: 0;
+
+            &__label {
+                width: 130px;
+                text-align: justify;
+            }
         }
     }
 }
