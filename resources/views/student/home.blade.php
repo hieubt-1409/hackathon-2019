@@ -129,7 +129,7 @@
                 </div>
             </el-card>
 
-            @if(!$currentSession->accepted)
+            @if($currentSession && !$currentSession->accepted)
                 <student-home :session-id="{{ $currentSession->id }}"></student-home>
             @endif
         </div>
